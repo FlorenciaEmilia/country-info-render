@@ -1,6 +1,21 @@
+:root {
+  --main-color: #3a2f4a;
+}
+
 body {
-  background-color: #393b64;
+  background-color: var(--main-color);
   color: white;
+}
+#map {
+  height: 70%;
+  width: 82%;
+  margin: auto;
+}
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 h1,
@@ -13,7 +28,8 @@ h1 {
   text-align: center;
   width: 50%;
   margin: auto;
-  font-size: 2.5em;
+  font-size: 3em;
+  padding-top: 1em;
 }
 
 ul {
@@ -28,44 +44,65 @@ ul {
 }
 
 .fas {
-  margin:1em;
-  font-size:1.5em
+  margin: 1em;
+  font-size: 1.5em;
 }
 input {
   border: 0;
   padding: 1em;
-  
+  letter-spacing: 4px;
   background-color: transparent;
   border-bottom: 1px solid white;
   width: 50%;
   color: white;
   outline: none;
+  text-align: center;
 }
 
 input::-webkit-input-placeholder {
   color: #c4c4c4;
+  opacity: 0.3;
   letter-spacing: 4px;
   text-align: center;
-  margin
 }
 input:-moz-placeholder {
   color: #c4c4c4;
+  opacity: 0.3;
   letter-spacing: 4px;
   text-align: center;
-  margin
-}
-#country-info{
-  width: 80%;
-  display: flex;
-}
-#country-side{
-  background-color: white;
-  color:#393b64;
-  padding: 2em;
-  width: 30%;
-  
 }
 
-#country-main img{
-  width: 75%;
+button {
+  background-color: var(--main-color);
+  border: 1px solid white;
+  color: white;
+  font-family: "Questrial", sans-serif;
+  padding: 1em;
+  letter-spacing: 2px;
+  margin-left: 2em;
+}
+#country-info {
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+#country-side {
+  background-color: white;
+  color: var(--main-color);
+  padding: 2em;
+  width: 20vw;
+}
+
+#country-main {
+  width: 40%;
+}
+#country-main img {
+  width: 100%;
+}
+
+#country-name {
+  font-size: 5em;
+  padding: 0;
+  margin: 0;
 }

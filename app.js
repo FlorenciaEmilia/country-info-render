@@ -5,8 +5,20 @@ const title = document.querySelector("#page-title");
 const countryInfo = document.querySelector("#page-info");
 const sideTitle = document.querySelectorAll(".side-titles");
 const countryMain = document.querySelector("#country-main");
-const flagDisplay = document.createElement("img");
-const countryName = document.createElement("h2");
+
+// const flagDisplay = document.createElement("img");
+const flagDisplay = document.querySelector("#flag-display");
+const countryName = document.querySelector("#country-name");
+// const countryName = document.createElement("h2");
+// const mapDisplay = document.createElement("div");
+// mapDisplay.setAttribute("id", "map");
+
+const countrySide = document.querySelector("#country-side");
+countrySide.style.display = "none";
+
+let gMaps = document.querySelector("#map");
+gMaps.style.display = "none";
+
 let ul;
 let li;
 let elementToAppnd;
@@ -36,6 +48,7 @@ form.addEventListener("submit", async function (e) {
 });
 
 const sidePageDisplay = async (data) => {
+  countrySide.style.display = "block";
   const infoObject = {
     Capital: data.capital,
     Currency: data.currencies,
@@ -82,6 +95,10 @@ const sidePageDisplay = async (data) => {
         } catch (e) {
           console.log("error: ", e);
         }
+      } else if (keyToAccess.length == 1) {
+        li = document.createElement("li");
+        li.textContent = keyToAccess;
+        ul.appendChild(li);
       } else {
         li = document.createElement("li");
         li.textContent = "--";
@@ -92,10 +109,29 @@ const sidePageDisplay = async (data) => {
   }
 };
 
+let map;
+function initMap(lati, long) {
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: lati, lng: long },
+    zoom: 4,
+  });
+  // console.log("map init");
+  // map = new google.maps.Map(document.getElementById("map"), {
+  //   center: { lat: -34.397, lng: 150.644 },
+  //   zoom: 8,
+  // });
+}
+
 const mainPageDisplay = (data) => {
   flagDisplay.src = data.flag;
-  countryMain.appendChild(flagDisplay);
+  // countryMain.appendChild(flagDisplay);
 
   countryName.textContent = data.name;
-  countryMain.appendChild(countryName);
+  // countryMain.appendChild(countryName);
+
+  //Display google maps
+  // countryMain.appendChild(mapDisplay);
+  initMap(data.latlng[0], data.latlng[1]);
+  gMaps.style.display = "block";
+  // initMap();
 };
