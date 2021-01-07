@@ -1,0 +1,71 @@
+body {
+  background-color: #393b64;
+  color: white;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Rozha One", serif;
+}
+
+h1 {
+  text-align: center;
+  width: 50%;
+  margin: auto;
+  font-size: 2.5em;
+}
+
+ul {
+  list-style-type: none;
+  font-family: "Questrial", sans-serif;
+  font-weight: lighter;
+}
+
+#searchForm {
+  text-align: center;
+  padding: 2em;
+}
+
+.fas {
+  margin:1em;
+  font-size:1.5em
+}
+input {
+  border: 0;
+  padding: 1em;
+  
+  background-color: transparent;
+  border-bottom: 1px solid white;
+  width: 50%;
+  color: white;
+  outline: none;
+}
+
+input::-webkit-input-placeholder {
+  color: #c4c4c4;
+  letter-spacing: 4px;
+  text-align: center;
+  margin
+}
+input:-moz-placeholder {
+  color: #c4c4c4;
+  letter-spacing: 4px;
+  text-align: center;
+  margin
+}
+#country-info{
+  width: 80%;
+  display: flex;
+}
+#country-side{
+  background-color: white;
+  color:#393b64;
+  padding: 2em;
+  width: 30%;
+  
+}
+
+#country-main img{
+  width: 75%;
+}
