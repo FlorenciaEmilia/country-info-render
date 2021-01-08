@@ -5,13 +5,9 @@ const title = document.querySelector("#page-title");
 const countryInfo = document.querySelector("#page-info");
 const sideTitle = document.querySelectorAll(".side-titles");
 const countryMain = document.querySelector("#country-main");
-
-// const flagDisplay = document.createElement("img");
 const flagDisplay = document.querySelector("#flag-display");
 const countryName = document.querySelector("#country-name");
-// const countryName = document.createElement("h2");
 const mapDisplay = document.getElementById("map");
-// mapDisplay.setAttribute("id", "map");
 
 const countrySide = document.querySelector("#country-side");
 countrySide.style.display = "none";
@@ -22,14 +18,6 @@ gMaps.style.display = "none";
 let ul;
 let li;
 let elementToAppnd;
-
-const sideTitleContent = [
-  "Capital",
-  "Currency",
-  "Language",
-  "Region",
-  "Borders With",
-];
 
 const errorSvg = document.createElement("img");
 errorSvg.src = "error-404.svg";
@@ -43,7 +31,6 @@ form.addEventListener("submit", async function (e) {
       `https://restcountries.eu/rest/v2/name/${searchTerm}`
     );
     const data = res.data[0];
-    console.log("data is", data);
 
     //Make sure that everything is displaying
     countrySide.style.display = "flex";
@@ -69,7 +56,6 @@ const sidePageDisplay = async (data) => {
     Region: data.region,
     "Borders With": data.borders,
   };
-  console.log(infoObject);
 
   //Create Ul
   sideTitle.forEach((x, i) => (x.textContent = Object.keys(infoObject)[i]));
@@ -78,10 +64,8 @@ const sidePageDisplay = async (data) => {
     elementToAppnd = elem;
     ul = document.createElement("ul");
     let keyToAccess = infoObject[elem.textContent];
-    console.log(keyToAccess, typeof keyToAccess == "object");
 
     if (typeof keyToAccess == "object" && elem.textContent !== "Borders With") {
-      console.log(keyToAccess);
       for (let key in keyToAccess) {
         li = document.createElement("li");
         li.textContent = keyToAccess[key].name;
@@ -99,7 +83,6 @@ const sidePageDisplay = async (data) => {
               `
               https://restcountries.eu/rest/v2/alpha/${x}`
             );
-            // console.log(countryInitials.data.name);
             let countryName = countryInitials.data.name;
             li = document.createElement("li");
             li.textContent = countryName;
@@ -137,16 +120,12 @@ function initMap(lati, long) {
 
 const mainPageDisplay = (data) => {
   flagDisplay.src = data.flag;
-  // countryMain.appendChild(flagDisplay);
 
   countryName.textContent = data.name;
-  // countryMain.appendChild(countryName);
 
   //Display google maps
-  // countryMain.appendChild(mapDisplay);
   initMap(data.latlng[0], data.latlng[1]);
   gMaps.style.display = "block";
-  // initMap();
 };
 
 const handleError = () => {
