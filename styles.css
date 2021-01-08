@@ -8,7 +8,7 @@ body {
 }
 #map {
   height: 70%;
-  width: 82%;
+  /* width: 82%; */
   margin: auto;
 }
 html,
@@ -18,7 +18,6 @@ body {
   padding: 0;
 }
 
-h1,
 h2,
 h3 {
   font-family: "Rozha One", serif;
@@ -26,9 +25,11 @@ h3 {
 
 h1 {
   text-align: center;
-  width: 50%;
+  /* width: 50%; */
+  font-family: "Questrial", sans-serif;
+  font-weight: lighter;
   margin: auto;
-  font-size: 3em;
+  font-size: 2.5rem;
   padding-top: 1em;
 }
 
@@ -86,23 +87,60 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-around;
+  margin-bottom: 3em;
+  flex-direction: column-reverse;
 }
 #country-side {
-  background-color: white;
-  color: var(--main-color);
+  /* width: 50%; */
+  margin-top: 3em;
+  border: 1px solid white;
+  color: white;
   padding: 2em;
-  width: 20vw;
+  width: 50vw;
 }
 
 #country-main {
-  width: 40%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 #country-main img {
   width: 100%;
 }
 
 #country-name {
-  font-size: 5em;
+  font-size: 3em;
+  /* text-align: center; */
   padding: 0;
   margin: 0;
+}
+
+#error-svg {
+  margin: 3em;
+}
+
+#credits {
+  display: none;
+}
+
+@media (min-width: 800px) {
+  #country-info {
+    flex-direction: row;
+  }
+
+  #country-main {
+    width: 40%;
+  }
+
+  #country-side {
+    background-color: white;
+    color: var(--main-color);
+    width: 20vw;
+    margin-top: 0;
+  }
+
+  #country-name {
+    font-size: 5em;
+  }
 }

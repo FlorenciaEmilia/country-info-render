@@ -10,7 +10,7 @@ const countryMain = document.querySelector("#country-main");
 const flagDisplay = document.querySelector("#flag-display");
 const countryName = document.querySelector("#country-name");
 // const countryName = document.createElement("h2");
-// const mapDisplay = document.createElement("div");
+const mapDisplay = document.getElementById("map");
 // mapDisplay.setAttribute("id", "map");
 
 const countrySide = document.querySelector("#country-side");
@@ -31,6 +31,10 @@ const sideTitleContent = [
   "Borders With",
 ];
 
+const errorSvg = document.createElement("img");
+errorSvg.src = "error-404.svg";
+errorSvg.setAttribute("id", "error-svg");
+
 form.addEventListener("submit", async function (e) {
   e.preventDefault();
   const searchTerm = form.elements.query.value;
@@ -40,9 +44,18 @@ form.addEventListener("submit", async function (e) {
     );
     const data = res.data[0];
     console.log("data is", data);
+
+    //Make sure that everything is displaying
+    countrySide.style.display = "flex";
+    countryName.style.display = "block";
+    flagDisplay.style.display = "block";
+    mapDisplay.style.display = "block";
+    errorSvg.style.display = "none";
+
     sidePageDisplay(data);
     mainPageDisplay(data);
   } catch (e) {
+    handleError();
     console.log("the error is:", e);
   }
 });
@@ -111,15 +124,15 @@ const sidePageDisplay = async (data) => {
 
 let map;
 function initMap(lati, long) {
-  map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: lati, lng: long },
-    zoom: 4,
+  let coordinates = { lat: lati, lng: long },
+    map = new google.maps.Map(document.getElementById("map"), {
+      center: coordinates,
+      zoom: 4,
+    });
+  let marker = new google.maps.Marker({
+    position: coordinates,
+    map: map,
   });
-  // console.log("map init");
-  // map = new google.maps.Map(document.getElementById("map"), {
-  //   center: { lat: -34.397, lng: 150.644 },
-  //   zoom: 8,
-  // });
 }
 
 const mainPageDisplay = (data) => {
@@ -134,4 +147,14 @@ const mainPageDisplay = (data) => {
   initMap(data.latlng[0], data.latlng[1]);
   gMaps.style.display = "block";
   // initMap();
+};
+
+const handleError = () => {
+  //Make all elements in the page hide
+  countrySide.style.display = "none";
+  countryName.style.display = "none";
+  flagDisplay.style.display = "none";
+  mapDisplay.style.display = "none";
+  countryMain.appendChild(errorSvg);
+  errorSvg.style.display = "block";
 };
